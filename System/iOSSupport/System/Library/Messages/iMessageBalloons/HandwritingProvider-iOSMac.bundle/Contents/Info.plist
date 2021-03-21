@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>BuildMachineOSBuild</key>
+	<string>19A603003</string>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleExecutable</key>
+	<string>HandwritingProvider-iOSMac</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.apple.Handwriting.HandwritingProvider</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>HandwritingProvider-iOSMac</string>
+	<key>CFBundlePackageType</key>
+	<string>BNDL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleSupportedPlatforms</key>
+	<array>
+		<string>MacOSX</string>
+	</array>
+	<key>CFBundleVersion</key>
+	<string>383.3</string>
+	<key>CKBrowserDisplayName</key>
+	<string>Handwriting</string>
+	<key>CKDatasourceClass</key>
+	<string>HWiOSMacBalloonDataSource</string>
+	<key>CKURLScheme</key>
+	<string>handwriting</string>
+	<key>DTCompiler</key>
+	<string>com.apple.compilers.llvm.clang.1_0</string>
+	<key>DTPlatformBuild</key>
+	<string>12A8179f</string>
+	<key>DTPlatformName</key>
+	<string>macosx</string>
+	<key>DTPlatformVersion</key>
+	<string>11.1</string>
+	<key>DTSDKBuild</key>
+	<string>20C62</string>
+	<key>DTSDKName</key>
+	<string>macosx11.1internal</string>
+	<key>DTXcode</key>
+	<string>1200</string>
+	<key>DTXcodeBuild</key>
+	<string>12A8179f</string>
+	<key>IMCustomTypingIndicatorClass</key>
+	<string>HWTypingIndicatorLayer</string>
+	<key>LSMinimumSystemVersion</key>
+	<string>11.0</string>
+	<key>NSPrincipalClass</key>
+	<string>HWiOSMacBalloonController</string>
+	<key>UIDeviceFamily</key>
+	<array>
+		<integer>2</integer>
+		<integer>6</integer>
+	</array>
+</dict>
+</plist>
