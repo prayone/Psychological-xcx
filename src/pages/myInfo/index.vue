@@ -29,7 +29,7 @@ export default {
       success: res => {
         console.log(res)
         this.userInfo = res.userInfo
-      }
+      },
     })
   },
   data () {
@@ -39,21 +39,21 @@ export default {
       my_list: [
         {
           img: require('../../../static/images/yjfk.png'),
-          text: '意见反馈'
+          text: '意见反馈',
         },
         {
           img: require('../../../static/images/gywm.png'),
-          text: '关于我'
+          text: '关于我',
         },
         {
           img: require('../../../static/images/kefu.png'),
-          text: '联系我'
-        }
-      ]
+          text: '联系我',
+        },
+      ],
     }
   },
   created () {
-  }
+  },
 }
 </script>
 

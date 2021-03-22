@@ -1,24 +1,21 @@
 <template>
-  <div class="slider-box">
+  <div class="slider-box" v-if="question_length">
     <div class="slider">
       <div class="current-slider" :style="{width:slider_width+'%'}"></div>
     </div>
-    <div class="slider-index">{{question_current}}/{{question_length}}</div>
+    <div class="slider-index">{{question_current+1}}/{{question_length}}</div>
   </div>
 </template>
 
 <script>
 export default {
   props: {
-    att: {
-      type: String
-    },
     question_length: {
-      type: Number
+      type: Number,
     },
     question_current: {
-      type: Number
-    }
+      type: Number,
+    },
   },
   data () {
     return {
@@ -28,15 +25,15 @@ export default {
   },
   computed: {
     slider_width() {
-      let val = (100 / this.question_length) * this.question_current
+      let val = (100 / this.question_length) * (this.question_current + 1)
       return val
-    }
+    },
   },
   methods: {
     select_answer() {
 
-    }
-  }
+    },
+  },
 }
 </script>
 

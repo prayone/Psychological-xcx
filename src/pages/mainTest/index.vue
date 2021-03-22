@@ -34,7 +34,7 @@ export default {
 
   data () {
     return {
-      title_img: require('../../../static/images/h1.jpeg')
+      title_img: require('../../../static/images/h1.jpeg'),
     }
   },
 
@@ -42,8 +42,8 @@ export default {
     go_question() {
       const url = '../question/main'
       wx.navigateTo({ url: url })
-    }
-  }
+    },
+  },
 }
 </script>
 
