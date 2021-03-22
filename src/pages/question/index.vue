@@ -1,17 +1,20 @@
 <template>
   <div class="question">
-    <slider-com :question_length='question_list.length' :question_current='question_current'/>
-    <div class="question-box">
-      <div class="name">{{pre_question.name}}</div>
-      <radio-group class="radio-group" @change="radioChange">
-        <label class="radio" v-for="(item, idx) in pre_question.items" :key="idx">
-          <radio color='#30CFAE' :value="item.val" :checked="item.checked"  /> {{item.name}}
-        </label>
-      </radio-group>
+    <div class="question-all" v-if='is_show'>
+      <slider-com :question_length='question_list.length' :question_current='question_current'/>
+      <div class="question-box">
+        <div class="name">{{pre_question.name}}</div>
+        <radio-group class="radio-group" @change="radioChange">
+          <label class="radio" v-for="(item, idx) in pre_question.items" :key="idx">
+            <radio color='#30CFAE' :value="item.val" :checked="item.checked" /> {{item.name}}
+          </label>
+        </radio-group>
+      </div>
+      <div class="back-question" @click="back_answer">
+        上一题
+      </div>
     </div>
-    <div class="back-question" @click="back_answer">
-      上一题
-    </div>
+    
   </div>
 </template>
 
@@ -67,12 +70,15 @@ export default {
     }
   },
   computed: {
+    is_show() {
+      if (this.question_current > this.question_list.length) {
+        return false
+      }
+      return true
+    },
     pre_question() {
       return this.question_list[this.question_current - 1]
     }
-  },
-  created () {
-
   },
   methods: {
     back_answer() {
@@ -82,8 +88,8 @@ export default {
       this.question_current -= 1
     },
     radioChange(e) {
-      if (this.question_current >= this.question_length) {
-        console.log('-----')
+      if (this.question_current >= this.question_list.length) {
+        console.log(19999)
       } else {
         this.answers_obj[this.question_current] = e.target.value
         this.question_current += 1
