@@ -35,18 +35,24 @@
   "appid": "wx63fabae13c45e5ae",
   "projectname": "psychological_xcx",
   "condition": {
-    "search": {
-      "list": []
-    },
-    "conversation": {
+    "plugin": {
       "list": []
     },
     "game": {
-      "currentL": -1,
+      "list": []
+    },
+    "gamePlugin": {
       "list": []
     },
     "miniprogram": {
-      "list": []
+      "list": [
+        {
+          "name": "pages/question/main",
+          "pathName": "pages/question/main",
+          "query": "",
+          "scene": null
+        }
+      ]
     }
   }
 }
