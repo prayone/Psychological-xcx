@@ -4,9 +4,11 @@
       热门导读
     </div>
     <div class="list">
-      <div class="item" v-for="(item,index) in hotread_list" :key="index">
+      <div class="item" v-for="(item,index) in hotread_list" :key="index" @click="go_article">
         <img :src="item.url" mode="widthFix">
-        <div class="little-img"></div>
+        <div class="little-img">
+          我是文章标题
+        </div>
       </div>
     </div>
   </div>
@@ -15,8 +17,8 @@
 export default {
   props: {
     hotread_list: {
-      type: Array
-    }
+      type: Array,
+    },
   },
   data() {
     return {
@@ -25,7 +27,14 @@ export default {
   },
   mounted() {
     console.log(this.hotread_list)
-  }
+  },
+  methods: {
+    go_article() {
+      console.log(0)
+      const url = '../article/main'
+      wx.navigateTo({ url: url })
+    },
+  },
 }
 </script>
 <style scoped lang='less'>
@@ -49,6 +58,10 @@ export default {
         width: 100%;
         height: 100%;
         border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
       }
     }
   }

@@ -8,10 +8,10 @@
       <div class="question-box">
         <div class="name">{{pre_question.name}}</div>
         <radio-group class="radio-group" @change="radioChange">
-          <div class="radio" v-for="(item, idx) in pre_question.items" :key="idx">
+          <label class="radio" v-for="(item, idx) in pre_question.items" :key="idx">
             <radio color="#30CFAE" :value="item.val" :checked="item.checked" />
             <span class='label-text'>{{item.val}}. {{item.name}}</span>
-          </div>
+          </label>
         </radio-group>
       </div>
       <div class="back-question" @click="back_answer">上一题</div>
@@ -83,17 +83,18 @@ export default {
   },
   methods: {
     back_answer() {
-      if (this.question_current <= 1) {
+      if (this.question_current <= 0) {
         return
       }
       this.question_current -= 1
     },
     radioChange(e) {
+      this.answers_obj[this.question_current] = e.target.value
+      console.log(this.answers_obj, 'this.answers_obj------')
       if (this.question_current >= this.question_list.length - 1) {
         console.log('结果')
         this.is_show = true
       } else {
-        this.answers_obj[this.question_current] = e.target.value
         setTimeout(() => {
           this.question_current += 1
         }, 300)

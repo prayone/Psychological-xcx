@@ -49,7 +49,7 @@ export default {
 
 <style lang="less" scoped>
 .test-desc{
-  padding:0 16px;
+  padding:0 16px 60px;
   .title{
     color: #333;
     font-size: 18px;

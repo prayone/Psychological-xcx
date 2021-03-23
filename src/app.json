@@ -3,7 +3,8 @@
     "pages/index/main",
     "pages/mainTest/main",
     "pages/myInfo/main",
-    "pages/question/main"
+    "pages/question/main",
+    "pages/article/main"
   ],
   "window": {
     "backgroundTextStyle": "light",

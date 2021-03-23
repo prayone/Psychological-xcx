@@ -47,8 +47,8 @@
     "miniprogram": {
       "list": [
         {
-          "name": "pages/question/main",
-          "pathName": "pages/question/main",
+          "name": "pages/article/main",
+          "pathName": "pages/article/main",
           "query": "",
           "scene": null
         }

@@ -15,7 +15,6 @@
       <div class="item-text" v-else>{{item.text}}</div>
        <div class="jiantou"><img :src="jiantou"></div>
      </div>
-     
    </div>
   </div>
 </template>
