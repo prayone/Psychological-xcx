@@ -4,7 +4,8 @@
     "pages/mainTest/main",
     "pages/myInfo/main",
     "pages/question/main",
-    "pages/article/main"
+    "pages/article/main",
+    "pages/feedback/main"
   ],
   "window": {
     "backgroundTextStyle": "light",

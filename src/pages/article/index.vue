@@ -49,7 +49,7 @@ export default {
     text-overflow: ellipsis;
     display:-webkit-box; 
     -webkit-box-orient:vertical;
-    -webkit-line-clamp:2; 
+    -webkit-line-clamp:1; 
   }
   .card{
     overflow-y: scroll;
@@ -57,7 +57,7 @@ export default {
     width: 93%;
     left: 50%;
     transform: translateX(-50%);
-    height: 83vh;
+    height: 89vh;
     background: #FFFFFF;
     box-shadow: 0px 4px 12px 0px rgba(206, 223, 241, 0.4);
     border-radius: 8px;

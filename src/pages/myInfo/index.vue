@@ -1,13 +1,15 @@
 <template>
   <div class="myInfo">
    <div class="user-info">
-     <div class="img">
-       <img :src="userInfo.avatarUrl" alt="">
-     </div>
-     <div class="name">{{userInfo.nickName}}</div>
+      <div class="img">
+        <open-data type="userAvatarUrl" style="border-radius: 100%;"></open-data>
+      </div>
+      <div class="name">
+        <open-data type="userNickName"></open-data>
+      </div>
    </div>
    <div class="myList">
-     <div class="myItem" v-for="(item,index) in my_list" :key="index">
+     <div class="myItem" v-for="(item,index) in my_list" :key="index" @click="go_cont(index)">
        <div class="icon"><img :src="item.img"></div>
        <button v-if="index==2" open-type="contact" class="contact myItem">
           <div class='text-icon'>联系我</div>
@@ -22,14 +24,6 @@
 <script>
 export default {
   components: {
-  },
-  onLoad() {
-    wx.getUserInfo({
-      success: res => {
-        console.log(res)
-        this.userInfo = res.userInfo
-      },
-    })
   },
   data () {
     return {
@@ -51,7 +45,13 @@ export default {
       ],
     }
   },
-  created () {
+  methods: {
+    go_cont(index) {
+      if (index === 0) {
+        const url = '../feedback/main'
+        wx.navigateTo({ url: url })
+      }
+    },
   },
 }
 </script>
@@ -67,6 +67,7 @@ export default {
       width:70px;
       height: 70px;
       border-radius: 100%;
+      overflow: hidden;
       margin: 0px auto ;
       img{
         border-radius: 100%;
@@ -96,6 +97,8 @@ export default {
         width: 20px;
         height: 20px;
         margin-right: 16px;
+        position: relative;
+        top: -1px;
       }
       .jiantou{
         width: 18px;
