@@ -31,4 +31,24 @@ image{
   //   background: #30CFAE;
   // }
 }
+.animate_{
+  -webkit-animation: scaleDraw 3s ease-in-out infinite;
+}
+ @keyframes scaleDraw {  /*定义关键帧、scaleDrew是需要绑定到选择器的关键帧名称*/
+    0%{
+        transform: scale(1);  /*开始为原始大小*/
+    }
+    25%{
+        transform: scale(1.05); /*放大1.1倍*/
+    }
+    50%{
+        transform: scale(1);
+    }
+    75%{
+        transform: scale(1.05);
+    }
+    100%{
+       transform: scale(1);
+    }
+}
 </style>

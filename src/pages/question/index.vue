@@ -4,13 +4,13 @@
       结果
     </div>
      <div class="question-all" v-else>
-      <slider-com :question_length="question_list.length" :question_current="question_current" />
+      <slider-com :question_length="question_list&&question_list.length" :question_current="question_current" />
       <div class="question-box">
-        <div class="name">{{pre_question.name}}</div>
+        <div class="name">{{pre_question.title}}</div>
         <radio-group class="radio-group" @change="radioChange">
-          <label class="radio" v-for="(item, idx) in pre_question.items" :key="idx">
+          <label class="radio" v-for="(item, idx) in pre_question.answer" :key="idx">
             <radio color="#30CFAE" :value="item.val" :checked="item.checked" />
-            <span class='label-text'>{{item.val}}. {{item.name}}</span>
+            <span class='label-text'>{{item}}</span>
           </label>
         </radio-group>
       </div>
@@ -20,6 +20,7 @@
 </template>
 
 <script>
+import {queryQuestion} from '../../api'
 import sliderCom from '../../components/sliderCom'
 export default {
   components: {
@@ -74,6 +75,7 @@ export default {
       ],
       answers_obj: {},
       is_show: false,
+      type: '',
     }
   },
   computed: {
@@ -81,7 +83,16 @@ export default {
       return this.question_list[this.question_current]
     },
   },
+  onLoad(options) {
+    this.type = options.type
+    this.get_detail()
+  },
   methods: {
+    async get_detail() {
+      let res = await queryQuestion(this.type)
+      this.question_list = res.data
+      console.log(res.data, '-------')
+    },
     back_answer() {
       if (this.question_current <= 0) {
         return
@@ -117,7 +128,7 @@ export default {
       display: block;
       padding-top: 10px;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
     }
     .label-text{
       color:#555;

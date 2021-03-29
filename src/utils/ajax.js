@@ -14,7 +14,7 @@ function ajax (options) {
       },
       success: function (res) {
         wx.hideLoading()
-        if (res.data.status === 1) {
+        if (res.data.message === 'success') {
           resolve(res.data)
         } else {
           wx.showToast({

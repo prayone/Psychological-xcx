@@ -4,10 +4,10 @@
       热门导读
     </div>
     <div class="list">
-      <div class="item" v-for="(item,index) in hotread_list" :key="index" @click="go_article">
-        <img :src="item.url" mode="widthFix">
+      <div class="item" v-for="(item,index) in hotread_list" :key="index" @click="go_article(item.id)">
+        <img :src="item.pic" mode="widthFix">
         <div class="little-img">
-          我是文章标题
+          {{item.title}}
         </div>
       </div>
     </div>
@@ -29,9 +29,8 @@ export default {
     console.log(this.hotread_list)
   },
   methods: {
-    go_article() {
-      console.log(0)
-      const url = '../article/main'
+    go_article(id) {
+      const url = '../article/main?id=' + id
       wx.navigateTo({ url: url })
     },
   },

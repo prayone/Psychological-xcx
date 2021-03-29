@@ -1,11 +1,47 @@
 import ajax from '../utils/ajax'
-const host = 'https://m.xdfgk.cn'
+const host = 'https://psy.zhushou01.com'
 
-export function getDetail (data) {
+export function getArticleList (data) {
   return ajax(
     {
-      url: host + '/api/v1.0/product/get_detail_applet',
-      method: 'POST',
+      url: host + '/api/articles/',
+      method: 'GET',
+      data,
+    }
+  )
+}
+export function queryArticle(id, data) {
+  return ajax(
+    {
+      url: host + '/api/articles/' + id,
+      method: 'GET',
+      data,
+    }
+  )
+}
+export function getCategory(data) {
+  return ajax(
+    {
+      url: host + '/api/category/',
+      method: 'GET',
+      data,
+    }
+  )
+}
+export function queryTest(id, data) {
+  return ajax(
+    {
+      url: host + '/api/category/' + id,
+      method: 'GET',
+      data,
+    }
+  )
+}
+export function queryQuestion(id, data) {
+  return ajax(
+    {
+      url: host + '/api/question?page_size=200&type=' + id,
+      method: 'GET',
       data,
     }
   )

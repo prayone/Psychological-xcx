@@ -2,6 +2,7 @@
   "pages": [
     "pages/index/main",
     "pages/mainTest/main",
+    "pages/queryTest/main",
     "pages/myInfo/main",
     "pages/question/main",
     "pages/article/main",
@@ -18,6 +19,7 @@
     "color":"#aaa",
     "backgroundColor": "#fff",
     "selectedColor": "#30CFAE",
+    "borderStyle":"white",
     "list": [
       {
         "pagePath": "pages/index/main",

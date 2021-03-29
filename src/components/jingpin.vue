@@ -1,14 +1,11 @@
 <template>
   <div class="jingpin">
-    <!-- <div class="title-desc">
-      心灵密友
-    </div> -->
     <div class="list">
-      <div class="item" v-for="(item,index) in jingpin_list" :key="index">
-        <div class="img" :style="{background:item.background}">
-          <img :src="item.url" mode="widthFix">
+      <div class="item" v-for="(item,index) in jingpin_list" :key="index" @click="goTest(item)">
+        <div class="img" :style="{background:img_url[index].background}">
+          <img :src="img_url[index].url" mode="widthFix">
         </div>
-        <div class="title">{{item.title}}</div>
+        <div class="title">{{item.type}}</div>
       </div>
     </div>
   </div>
@@ -17,14 +14,32 @@
 export default {
   props: {
     jingpin_list: {
-      type: Array
-    }
+      type: Array,
+    },
   },
   data() {
     return {
-
+      img_url: [{
+        url: require('../../static/images/jp1.png'),
+        background: '#50c69a',
+      }, {
+        url: require('../../static/images/jp4.png'),
+        background: '#8682d7',
+      }, {
+        url: require('../../static/images/jp3.png'),
+        background: '#8da5de',
+      }, {
+        url: require('../../static/images/jp2.png'),
+        background: '#8da5de',
+      } ],
     }
-  }
+  },
+  methods: {
+    goTest(item) {
+      const url = '../queryTest/main?type=' + item.id
+      wx.navigateTo({ url: url })
+    },
+  },
 }
 </script>
 <style scoped lang='less'>
@@ -34,7 +49,7 @@ export default {
     padding: 0 10px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     .item{
       margin-bottom: 7px;
       .img{
