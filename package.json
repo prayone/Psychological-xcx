@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "mpvueTemplateProjectVersion": "0.1.0",
   "description": "心理测试小程序",
-  "author": "wangping <1054864949@qq.com>",
+  "author": "赵海玲",
   "private": true,
   "scripts": {
     "dev:wx": "node build/dev-server.js wx",

@@ -1,12 +1,14 @@
 <template>
   <div class="question">
     <div class="result" v-if="is_show">
+      <div class="result-title">恭喜您已完成测试，您的测试结果为：</div>
       <div class="result-val">{{result.val}}</div>
       <div class="result-desc-list">
         <div class="result-desc-item" v-for="(item,index) in result_desc" :key="index">
           {{item}}
         </div>
       </div>
+      <div class="back-question" @click="go_home">返回首页</div>
     </div>
      <div class="question-all" v-else>
       <slider-com :question_length="question_list&&question_list.length" :question_current="question_current" />
@@ -38,7 +40,8 @@ export default {
       answers_obj: {},
       is_show: false,
       type: '',
-      result: {},
+      result: {
+      },
     }
   },
   computed: {
@@ -59,6 +62,12 @@ export default {
     this.get_detail()
   },
   methods: {
+    go_home() {
+      const url = '../index/main'
+      wx.switchTab({
+        url,
+      })
+    },
     async get_detail() {
       let res = await queryQuestion(this.type)
       this.question_list = res.data
@@ -72,7 +81,6 @@ export default {
     radioChange(e) {
       this.answers_obj[this.question_current] = e.target.value
       if (this.question_current >= this.question_list.length - 1) {
-        console.log('结果', Object.values(this.answers_obj))
         this.is_show = true
         let resultLast = Object.values(this.answers_obj)
         this.get_result(resultLast)
@@ -88,7 +96,6 @@ export default {
       }
       let res = await queryResult(data)
       this.result = res.data
-      console.log(res)
     },
   },
 }
@@ -129,13 +136,18 @@ export default {
     border-radius: 24px;
   }
   .result{
+    .result-title{
+      color: #444;
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
     .result-val{
       color: #30CFAE;
       font-weight: 700;
       font-size: 18px;
     }
     .result-desc-list{
-      color: #555;
+      color: #666;
       font-size: 14px;
       .result-desc-item{
         margin-top: 10px;
