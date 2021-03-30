@@ -46,3 +46,12 @@ export function queryQuestion(id, data) {
     }
   )
 }
+export function queryResult(data) {
+  return ajax(
+    {
+      url: host + '/api/result/',
+      method: 'POST',
+      data,
+    }
+  )
+}

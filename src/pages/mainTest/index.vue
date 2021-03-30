@@ -24,7 +24,7 @@ export default {
   components: {
   },
   onLoad(options) {
-    this.type = options.type || 4
+    this.type = 4
     this.get_detail()
   },
   data () {
