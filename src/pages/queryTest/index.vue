@@ -12,7 +12,7 @@
       </div>
     </div>
     <div class='btn-test'>
-      <div class="btn animate_" @click="go_question">开始测试 </div>
+      <div class="btn animate_" @click="go_question">开始测试</div>
     </div>
   </div>
 </template>

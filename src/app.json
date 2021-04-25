@@ -6,7 +6,10 @@
     "pages/myInfo/main",
     "pages/question/main",
     "pages/article/main",
-    "pages/feedback/main"
+    "pages/feedback/main",
+    "pages/myTest/main",
+    "pages/myTestDetail/main"
+
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -9,9 +9,9 @@
       </div>
    </div>
    <div class="myList">
-     <div class="myItem" v-for="(item,index) in my_list" :key="index" @click="go_cont(index)">
+     <div class="myItem" v-for="(item,index) in my_list" :key="index" @click="go_cont(item)">
        <div class="icon"><img :src="item.img"></div>
-       <button v-if="index==2" open-type="contact" class="contact myItem">
+       <button v-if="index==3" open-type="contact" class="contact myItem">
           <div class='text-icon'>联系我</div>
       </button>
       <div class="item-text" v-else>{{item.text}}</div>
@@ -31,13 +31,20 @@ export default {
       jiantou: require('../../../static/images/右箭头.png'),
       my_list: [
         {
-          img: require('../../../static/images/yjfk.png'),
-          text: '意见反馈',
+          img: require('../../../static/images/mylist1.png'),
+          text: '我的测试',
+          path: '../myTest/main',
         },
         {
-          img: require('../../../static/images/gywm.png'),
-          text: '关于我',
+          img: require('../../../static/images/yjfk.png'),
+          text: '意见反馈',
+          path: '../feedback/main',
         },
+        // {
+        //   img: require('../../../static/images/gywm.png'),
+        //   text: '关于我',
+        //   path: '../feedback/main',
+        // },
         {
           img: require('../../../static/images/kefu.png'),
           text: '联系我',
@@ -46,10 +53,10 @@ export default {
     }
   },
   methods: {
-    go_cont(index) {
-      if (index === 0) {
-        const url = '../feedback/main'
-        wx.navigateTo({ url: url })
+    go_cont(item) {
+      if (item.path) {
+        const url = item.path
+        wx.navigateTo({ url })
       }
     },
   },

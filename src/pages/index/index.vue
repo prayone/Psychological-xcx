@@ -91,11 +91,18 @@ export default {
           content: '         ',
         },
       ],
+      code: '',
     }
   },
   onLoad() {
     this.get_detail()
     this.get_jingpin()
+    wx.login({
+      success: async res => {
+        this.code = res.code
+        console.log(this.code, 'code-----')
+      },
+    })
   },
   methods: {
     async get_detail () {
