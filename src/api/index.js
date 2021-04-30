@@ -1,5 +1,6 @@
 import ajax from '../utils/ajax'
-const host = 'https://psy.zhushou01.com'
+// const host = 'https://psy.zhushou01.com'
+const host = 'http://127.0.0.1:8000'
 
 export function getArticleList (data) {
   return ajax(
@@ -40,7 +41,7 @@ export function queryTest(id, data) {
 export function queryQuestion(id, data) {
   return ajax(
     {
-      url: host + '/api/question?page_size=200&type=' + id,
+      url: host + '/api/question/?page_size=200&type=' + id,
       method: 'GET',
       data,
     }
@@ -51,6 +52,26 @@ export function queryResult(data) {
     {
       url: host + '/api/result/',
       method: 'POST',
+      data,
+    }
+  )
+}
+
+export function login(data) {
+  return ajax(
+    {
+      url: host + '/api/login/',
+      method: 'POST',
+      data,
+    }
+  )
+}
+
+export function getRecord(data) {
+  return ajax(
+    {
+      url: host + '/api/record/',
+      method: 'GET',
       data,
     }
   )

@@ -49,7 +49,7 @@ export default {
       return this.question_list[this.question_current]
     },
     result_desc() {
-      let desc = this.result.desc && this.result.desc.split(/[(\r\n)\r\n]+/)
+      let desc = this.result.desc && this.result.desc.content.split(/[(\r\n)\r\n]+/)
       return desc
     },
   },
@@ -70,6 +70,7 @@ export default {
     },
     async get_detail() {
       let res = await queryQuestion(this.type)
+      res.data = res.data.splice(0, 6)
       this.question_list = res.data
     },
     back_answer() {
@@ -154,6 +155,6 @@ export default {
       }
     }
   }
-  
+
 }
 </style>
