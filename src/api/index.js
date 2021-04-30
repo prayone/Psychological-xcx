@@ -1,6 +1,6 @@
 import ajax from '../utils/ajax'
-// const host = 'https://psy.zhushou01.com'
-const host = 'http://127.0.0.1:8000'
+const host = 'https://psy.zhushou01.com'
+// const host = 'http://127.0.0.1:8000'
 
 export function getArticleList (data) {
   return ajax(
@@ -72,6 +72,23 @@ export function getRecord(data) {
     {
       url: host + '/api/record/',
       method: 'GET',
+      data,
+    }
+  )
+}
+export function getRecordDetail(id) {
+  return ajax(
+    {
+      url: host + '/api/record/' + id,
+      method: 'GET',
+    }
+  )
+}
+export function setRecord(data) {
+  return ajax(
+    {
+      url: host + '/api/record/',
+      method: 'post',
       data,
     }
   )

@@ -1,10 +1,11 @@
 <template>
   <div class="myTest">
    <div class="test-list">
-     <div class="test-item" @click="go_detail">
+     <div class="test-item" v-for="(item,index) in result" :key="index"  @click="go_detail(item.id)">
       <div class="item-box">
-        <div class="title">卡特尔人格测试</div>
-        <div class="time">2021-10-10 19:40</div>
+        <div class="title">{{item.psy_type.title}}</div>
+        <div class="desc">结果：{{item.title}}</div>
+        <div class="time">{{item.create_date}}</div>
       </div>
       <div class="array"><img :src="jiantou"></div>
      </div>
@@ -13,18 +14,27 @@
 </template>
 
 <script>
+import { getRecord } from '../../api'
 export default {
   components: {
   },
   data () {
     return {
       jiantou: require('../../../static/images/右箭头.png'),
+      result: [],
     }
   },
+  onLoad() {
+    this.get_result()
+  },
   methods: {
-    go_detail() {
-      const url = '../myTestDetail/main'
+    go_detail(id) {
+      const url = '../myTestDetail/main?id=' + id
       wx.navigateTo({ url })
+    },
+    async get_result() {
+      let res = await getRecord()
+      this.result = res.data
     },
   },
 }
@@ -45,6 +55,11 @@ export default {
       .title{
         font-size: 16px;
         // font-weight: 700;
+      }
+      .desc {
+        font-size: 14px;
+        color:#333;
+        padding: 10px 0;
       }
       .time{
         color: #858585;

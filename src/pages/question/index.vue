@@ -1,5 +1,6 @@
 <template>
   <div class="question">
+    <!-- 结果 -->
     <div class="result" v-if="is_show">
       <div class="result-title">恭喜您已完成测试，您的测试结果为：</div>
       <div class="result-val">{{result.val}}</div>
@@ -8,8 +9,19 @@
           {{item}}
         </div>
       </div>
+      <div class="result-title article-recommend">根据您的测试结果，为您推荐相关文章</div>
+       <div class="test-list">
+        <div class="test-item" v-for="(item,index) in result.articles" :key="index" @click="go_detail(item.id)">
+          <div class="item-box">
+            <div class="title">{{item.title}}</div>
+            <div class="time">{{item.create_date}}</div>
+          </div>
+          <div class="array"><img :src="jiantou"></div>
+        </div>
+        </div>
       <div class="back-question" @click="go_home">返回首页</div>
     </div>
+    <!-- 题目 -->
      <div class="question-all" v-else>
       <slider-com :question_length="question_list&&question_list.length" :question_current="question_current" />
       <div class="question-box" v-if="pre_question">
@@ -27,7 +39,7 @@
 </template>
 
 <script>
-import {queryQuestion, queryResult} from '../../api'
+import {queryQuestion, queryResult, setRecord} from '../../api'
 import sliderCom from '../../components/sliderCom'
 export default {
   components: {
@@ -42,6 +54,8 @@ export default {
       type: '',
       result: {
       },
+      jiantou: require('../../../static/images/右箭头.png'),
+
     }
   },
   computed: {
@@ -70,7 +84,7 @@ export default {
     },
     async get_detail() {
       let res = await queryQuestion(this.type)
-      res.data = res.data.splice(0, 6)
+      res.data = res.data
       this.question_list = res.data
     },
     back_answer() {
@@ -97,6 +111,22 @@ export default {
       }
       let res = await queryResult(data)
       this.result = res.data
+      this.post_result()
+    },
+    async post_result() {
+      const openid = wx.getStorageSync('openid') || ''
+      let data = {
+        title: this.result.val,
+        content: this.result.desc.content,
+        psy_type: this.type,
+        openid,
+      }
+      let res = await setRecord(data)
+      this.result = res.data
+    },
+    go_detail(id) {
+      const url = '../article/main?id=' + id
+      wx.navigateTo({ url: url })
     },
   },
 }
@@ -155,6 +185,35 @@ export default {
       }
     }
   }
-
+  .article-recommend{
+    margin-top: 28px;
+    font-size: 18px;
+    font-weight: 600;
+  }
+  .test-list{
+    .test-item{
+      box-shadow: 0px 4px 12px 0px rgba(206, 223, 241, 0.4);
+      border-radius: 8px;
+      border: 1px solid rgba(237, 240, 247, 0.8);
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .title{
+        font-size: 16px;
+        color:#30CFAE;
+        // font-weight: 700;
+      }
+      .time{
+        color: #858585;
+        font-size: 12px;
+        margin-top: 8px;
+      }
+      .array{
+        width: 18px;
+        height: 18px;
+      }
+    }
+  }
 }
 </style>
