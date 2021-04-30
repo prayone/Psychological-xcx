@@ -3,6 +3,8 @@ function ajax (options) {
   wx.showLoading({
     title: '加载中',
   })
+  const openid = wx.getStorageSync('openid') || ''
+  console.log('jax openid', openid)
   return new Promise((resolve, reject) => {
     console.log(options.data, 'data----')
     wx.request({
@@ -10,8 +12,9 @@ function ajax (options) {
       timeout: 500000,
       method: options.method,
       data: options.data,
-      headers: {
+      header: {
         'content-type': 'application/json', // 默认值
+        'openid': openid, // open_id
       },
       success: function (res) {
         wx.hideLoading()

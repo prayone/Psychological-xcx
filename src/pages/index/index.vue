@@ -11,7 +11,7 @@ import swiper from '@/components/swiper'
 import jingpin from '@/components/jingpin'
 import hotread from '@/components/hotread'
 
-import { getArticleList, getCategory } from '../../api/index'
+import { getArticleList, getCategory, login } from '../../api/index'
 
 export default {
   components: {swiper, jingpin, hotread},
@@ -91,20 +91,30 @@ export default {
           content: '         ',
         },
       ],
-      code: '',
     }
   },
   onLoad() {
     this.get_detail()
     this.get_jingpin()
-    wx.login({
-      success: async res => {
-        this.code = res.code
-        console.log(this.code, 'code-----')
-      },
-    })
+
+    const openId = wx.setStorageSync('openId')
+    if (!openId) {
+      // 静默登录拿到openId
+      this.getLogin()
+    }
   },
   methods: {
+    getLogin: function(event) {
+      wx.login({
+        success: async ({ code }) => {
+          // code 请求后端换取openid的接口
+          console.log(code)
+          const { openid } = await login({code})
+          console.log('openid', openid)
+          wx.setStorageSync('openid', openid)
+        },
+      })
+    },
     async get_detail () {
       this.swiper_list = []
       this.hotread_list = []
