@@ -1,13 +1,18 @@
 <template>
   <div class="myTest">
    <div class="test-list">
-     <div class="test-item" v-for="(item,index) in result" :key="index"  @click="go_detail(item.id)">
-      <div class="item-box">
-        <div class="title">{{item.psy_type.title}}</div>
-        <div class="desc">结果：{{item.title}}</div>
-        <div class="time">{{item.create_date}}</div>
+     <template v-if="result.length">
+      <div class="test-item"  v-for="(item,index) in result" :key="index"  @click="go_detail(item.id)">
+        <div class="item-box">
+          <div class="title">{{item.psy_type.title}}</div>
+          <div class="desc">结果：{{item.title}}</div>
+          <div class="time">{{item.create_date}}</div>
+        </div>
+        <div class="array"><img :src="jiantou"></div>
       </div>
-      <div class="array"><img :src="jiantou"></div>
+     </template>
+     <div v-else class="list-empty">
+       暂无记录
      </div>
     </div>
   </div>
@@ -33,7 +38,8 @@ export default {
       wx.navigateTo({ url })
     },
     async get_result() {
-      let res = await getRecord()
+      const openid = wx.getStorageSync('openid')
+      let res = await getRecord({openid})
       this.result = res.data
     },
   },
@@ -70,6 +76,10 @@ export default {
         width: 18px;
         height: 18px;
       }
+    }
+    .list-empty {
+      text-align: center;
+      color: #666;
     }
   }
 }

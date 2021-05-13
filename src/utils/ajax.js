@@ -4,9 +4,8 @@ function ajax (options) {
     title: '加载中',
   })
   const openid = wx.getStorageSync('openid') || ''
-  console.log('jax openid', openid)
+  console.log('ajax openid', openid)
   return new Promise((resolve, reject) => {
-    console.log(options.data, 'data----')
     wx.request({
       url: options.url,
       timeout: 500000,

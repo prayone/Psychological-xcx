@@ -15,7 +15,7 @@
         {
           "name": "pages/myTest/main",
           "pathName": "pages/myTest/main",
-          "query": "type=4",
+          "query": "",
           "scene": null
         }
       ]

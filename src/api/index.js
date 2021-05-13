@@ -93,3 +93,13 @@ export function setRecord(data) {
     }
   )
 }
+
+export function feedback(data) {
+  return ajax(
+    {
+      url: host + '/api/feedback/',
+      method: 'POST',
+      data,
+    }
+  )
+}

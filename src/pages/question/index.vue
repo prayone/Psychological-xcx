@@ -52,8 +52,7 @@ export default {
       answers_obj: {},
       is_show: false,
       type: '',
-      result: {
-      },
+      result: {},
       jiantou: require('../../../static/images/右箭头.png'),
 
     }
@@ -121,8 +120,7 @@ export default {
         psy_type: this.type,
         openid,
       }
-      let res = await setRecord(data)
-      this.result = res.data
+      await setRecord(data)
     },
     go_detail(id) {
       const url = '../article/main?id=' + id

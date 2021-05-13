@@ -1,6 +1,20 @@
 <script>
+import { login } from './api/index'
+
 export default {
   created () {
+    const openid = wx.getStorageSync('openid')
+    if (!openid) {
+      // 静默登录拿到openid
+      wx.login({
+        success: async ({ code }) => {
+          // code 请求后端换取openid的接口
+          const { openid } = await login({code})
+          console.log('openid', openid)
+          wx.setStorageSync('openid', openid)
+        },
+      })
+    }
   },
 }
 </script>

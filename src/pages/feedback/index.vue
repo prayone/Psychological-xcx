@@ -1,28 +1,53 @@
 <template>
 <div class="feed-back">
   <div class="title">
+    主题
+  </div>
+  <input type="text" v-model="title" placeholder="请描述你的问题" placeholder-style="color:#aaa;font-size:12px;">
+  <div class="title" style="margin-top:30px;">
     问题描述
   </div>
-  <textarea v-model="text_desc" cols="40" rows="10" placeholder="您的意见就是我们前进的动力~" placeholder-style="color:#aaa;font-size:12px;"></textarea>
-  <div class="title" style="margin-top:30px;">
-    联系方式
-  </div>
-  <input type="text" v-model="phone" placeholder="请留下您的联系方式（QQ，微信，手机号）等" placeholder-style="color:#aaa;font-size:12px;">
+  <textarea v-model="content" cols="40" rows="10" placeholder="您的意见就是我们前进的动力~" placeholder-style="color:#aaa;font-size:12px;"></textarea>
+
   <div class="submit" @click="submit">提交</div>
 </div>
 </template>
 <script>
+import { feedback } from '../../api'
+
 export default {
   data() {
     return {
-      text_desc: '',
-      phone: '',
+      content: '',
+      title: '',
     }
   },
   methods: {
-    submit() {
-      console.log(this.text_desc, '--------')
-      console.log(this.phone, '------')
+    async submit() {
+      const {title, content} = this
+      const res = await feedback({title, content})
+      if (res.code === 201) {
+        wx.showToast({
+          title: '提交成功!',
+          icon: 'success',
+          duration: 2000,
+        })
+        this.title = ''
+        this.content = ''
+        setTimeout(() => {
+          const url = '../index/main'
+          wx.switchTab({
+            url,
+          })
+        }, 1000)
+      } else {
+        wx.showToast({
+          title: '提交失败，请重试',
+          icon: 'success',
+          duration: 2000,
+        })
+      }
+      console.log(res, '------')
     },
   },
 }
